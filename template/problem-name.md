@@ -5,6 +5,8 @@
 Problem description from coding problem website. Explain input parameters,
 required outputs, problem constraints, and complexity constraints.
 
+### Relevant Content/Linkds
+
 ## Prequisites
 
 - **Pattern name** - [Idea or pattern to look out for]
@@ -18,6 +20,8 @@ Explain the idea behind this approach clearly and efficiently. Walk through
 the ideas behind this approach like you are teaching a non-technical person.
 
 ### Solution 1 Examples & Psuedocode
+
+**Code:** [solutions/file-name](solutions/file-name)
 
 Give one or more small examples, but the important part is writing the psuedocode
 in clean written code.
