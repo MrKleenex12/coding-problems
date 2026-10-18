@@ -12,17 +12,17 @@ required outputs, problem constraints, and complexity constraints.
 
 ## Solution 1 (Least Optimal)
 
-### Intuition
+### Solution 1 Intuition
 
 Explain the idea behind this approach clearly and efficiently. Walk through
 the ideas behind this approach like you are teaching a non-technical person.
 
-### Examples & Psuedocode
+### Solution 1 Examples & Psuedocode
 
 Give one or more small examples, but the important part is writing the psuedocode
 in clean written code.
 
-### Complexity
+### Solution 1 Complexity
 
 - **Time:** **O([...])**
 - **Space:** **O([...])**
