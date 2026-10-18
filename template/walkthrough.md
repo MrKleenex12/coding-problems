@@ -1,10 +1,10 @@
 # Walkthrough
 
-> **Pattern:** [Pattern name, e.g. Two pointers, Sliding window, Bucketing / pigeonhole]
+> **Pattern:** [Name of the technique this problem is built on]
 
 ## What is the problem really asking?
 
-[Restate the problem in one or two plain sentences, without the story. Name the input, the output, and the one constraint that makes it hard (time, space, or "can't modify the input").]
+[Restate the problem in one or two plain sentences, without the story. Name the input, the output, and the one constraint that makes it hard.]
 
 ## Why not the obvious approach?
 
@@ -12,11 +12,11 @@
 
 ## The key observation
 
-[State the one fact about the input that unlocks the solution. Explain why it is true, not just that it is true. If the fact has a name (e.g. pigeonhole principle, sorted order, monotonic window), name it here.]
+[State the one fact about the input that unlocks the solution. Explain why it is true, not just that it is true. If the fact has a standard name, name it here.]
 
 ## The idea
 
-[Turn the observation into a plan in plain words, before any code. Define any new term the first time you use it (e.g. "A *bucket* is..."). If there is a design choice, like a size or a starting point, explain how to choose it and what happens if it is too big or too small.]
+[Turn the observation into a plan in plain words, before any code. Define any new term the first time you use it. If there is a design choice, like a size or a starting point, explain how to choose it and what happens if it is too big or too small.]
 
 ## Walking through an example
 
@@ -47,15 +47,15 @@ Consider `[small example input]`.
 
 ## Edge cases
 
-- [Edge case, e.g. empty input, a single element, all values equal]: [what happens and why]
+- [Edge case in the input]: [what happens and why]
 - [Input outside the stated guarantee]: [what the implementation returns]
 
 ## Recognizing this pattern next time
 
 [List the clues in a problem statement that should make you think of this pattern.]
 
-- [Clue, e.g. "values are bounded by the array length"]
-- [Clue, e.g. "less than O(n) extra space"]
+- [Clue in the problem statement that points to this pattern]
+- [Second clue in the problem statement that points to this pattern]
 
 ## Common mistakes
 
