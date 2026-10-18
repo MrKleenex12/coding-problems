@@ -17,14 +17,14 @@ export function repeatedNumber(A) {
         // high and low represent the ends of the bucket range
         low = b_idx * k + 1;
         high = Math.min(low + k - 1, n);
-        const range = high - low;
+        const range = high - low + 1;
 
-        if (counts[b_idx]++ > range) {
+        if (++counts[b_idx] > range) {
             break;
         }
     }
 
-    const seen = new Array(high - low + 1).fill(0);
+    const seen = new Array(range).fill(0);
 
     for (const a of A) {
         if (a < low || a > high) continue;

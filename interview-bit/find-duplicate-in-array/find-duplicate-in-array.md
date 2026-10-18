@@ -73,7 +73,9 @@ Explanation 3:
 
 ## Solution 1 (Least Optimal)
 
-No code file. This is the obvious approach the other solutions improve on.
+This is the obvious approach the other solutions improve on.
+
+**Code:** [solutions/brute-force.js](solutions/brute-force.js)
 
 ### Solution 1 Intuition
 
@@ -81,7 +83,16 @@ A direct way to find a duplicate is to keep a counter for every possible value. 
 
 ### Solution 1 Examples & Psuedocode
 
-[Write the pseudocode.]
+```text
+def repeated_number(arr):
+  create dict
+  for(num in arr):
+    count = map.get(num, 0) += 1
+    if  count > 1:
+      return num;
+  
+  return -1
+```
 
 ### Solution 1 Complexity
 
@@ -135,6 +146,32 @@ So the repeated value is `4`. We only need counters for the values in this one b
 
 [Write the pseudocode.]
 
+```text
+def repeated_number(arr):
+  n = arr.len() - 1
+  k = math.isqrt(n)
+  n_buckets = math.ceil(n / k)
+  counts = [0] * n_buckets
+
+  for num in arr:
+    b_idx = math.floor((num - 1) / k)
+    low = b_idx * k + 1
+    range = high - low + 1
+    high = math.min(low + k - 1, n)
+
+    if ++counts[b_idx] > range:
+      break
+  
+  seen = [0] * range
+  for val in arr:
+    if val < low || val > high:
+      continue
+    if ++seen[val - low] > 1:
+      return val
+  
+  return -1
+```
+
 ### Solution 2 Complexity
 
 - **Time:** **O(n)**, because each pass scans the input array once, so the array is traversed twice.
@@ -154,6 +191,28 @@ index creates a cycle, and why the cycle's entry point is the duplicate.]
 ### Solution 3 Examples & Psuedocode
 
 [Give a small example and write the pseudocode.]
+
+```text
+def repeated_number(arr):
+  slow = 0, fast = 0
+
+  for _i in arr:
+    slow = arr[slow]
+    fast = arr[arr[fast]]
+
+    if (slow == fast):
+      break
+  
+  if slow != fast:
+    return -1
+  
+  slow = 0
+  while(slow != fast):
+    slow = arr[slow]
+    fast = arr[fast]
+  
+  return slow
+```
 
 ### Solution 3 Complexity
 
