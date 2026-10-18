@@ -21,11 +21,9 @@ You can only travel in one direction. i to i+1, i+2, ... n-1, 0, 1, 2.. Completi
 
 The first argument given is the integer array A. The second argument given is the integer array B.
 
-
 ## Output Format
 
 Return the minimum starting gas station's index if you can travel around the circuit once, otherwise return -1.
-
 
 ## Example Input
 
@@ -49,4 +47,3 @@ If you start from index 1, you can fill in A[1] = 2 amount of gas.
 Now your tank has 2 units of gas. You need B[1] = 1 gas to get to station 0.
 So, you travel to station 0 and still have 1 unit of gas left over.
 You fill in A[0] = 1 unit of additional gas, making your current gas = 2. It costs you B[0] = 2 to get to station 1, which you do and complete the circuit.
-
