@@ -5,7 +5,7 @@
 Problem description from coding problem website. Explain input parameters,
 required outputs, problem constraints, and complexity constraints.
 
-### Relevant Content/Linkds
+### Relevant Content/Links
 
 ## Prequisites
 
