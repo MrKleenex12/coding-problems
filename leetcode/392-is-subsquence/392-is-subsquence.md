@@ -38,46 +38,63 @@ In this scenario, how would you change your code?
 
 ## Solution 1: Two pointers
 
-Keep one pointer in `s` and one in `t`, both starting at 0. Walk through `t` one
-character at a time. Whenever the current character of `t` matches the current
-character of `s`, advance the `s` pointer. The `t` pointer advances every step
-either way.
+The most straightforward way is to walk through `t` and check off the
+characters of `s` in order. Keep track of which character of `s` you're looking
+for. Every time you see it in `t`, move on to the next one. If you check off
+every character of `s`, it's a subsequence. If you run out of `t` first, it
+isn't.
 
-- If the `s` pointer reaches `s.length`, every character of `s` was matched in
-  order, so `s` **is** a subsequence.
-- If you reach the end of `t` first, some character of `s` was never matched,
-  so `s` **is not** a subsequence.
+Complexity:
 
-**Time:** O(|t|) per query. **Space:** O(1).
+- Space: `O(1)`
+- Time: `O(m)` where `m = t.length`
 
-## Solution 2: Preprocessing + binary search
+This is the easiest way to solve this problem. But what if we have to check
+billions of different `s` strings against the same `t`? Scanning all of `t`
+every time is too slow.
 
-**Preprocessing:** Build an *index list* for `t`, a map from each character to
-the list of indices where it appears in `t`. This is similar to an adjacency
-list, where each key maps to a list. Because you scan `t` left to right, each
-list comes out already sorted.
+## Solution 2: Preprocessing and binary search
 
-**Query:** For `s` to be a subsequence, its characters must be found in `t` at
-strictly increasing indices. For example, in `s = "ab"`, the `b` you use must
-come after the `a` you use. So track `prev`, the index in `t` of the last
-matched character, starting at `-1`.
+Instead of rescanning `t`, scan it once and write down every index where each
+character appears. Because we scan left to right, each character's list of
+indices is already sorted.
 
-For each character `c` in `s`, binary search `c`'s index list for the **first
-index greater than `prev`** (upper bound), then set `prev` to that index.
-Picking the earliest valid index is a greedy choice. It leaves the most room in
-`t` for the remaining characters of `s`.
+Now, to check `s`, remember where in `t` the last match happened. For each
+character of `s`, binary search its list for the first index that comes after
+the last match. Always taking the earliest possible match is safe, because it
+leaves the most room in `t` for the rest of `s`. If a character never appears
+in `t`, or only appears before the last match, then `s` isn't a subsequence.
 
-Return false if either:
+Complexity:
 
-- `c` has no index list (it never appears in `t`), or
-- the binary search returns `list.length`, meaning every occurrence of `c` is
-  at or before `prev`.
+- Space: `O(m)`
+- Time: `O(m)` to preprocess once, then `O(|s| log m)` per query
 
-If every character is matched, return true.
+Each query no longer depends on scanning all of `t`, only on a binary search
+for each character. Can we get rid of the binary search too?
 
-**Time:** O(|t|) to preprocess once, then O(|s| log |t|) per query.
-**Space:** O(|t|).
+## Solution 3: Next occurrence matrix
 
-**When to use it:** Only when checking many strings `s` against the same `t`.
-For a single query, preprocessing costs O(|t|) anyway, so two pointers is
-simpler and just as fast.
+Build a table that answers one question instantly: "starting at this index in
+`t`, where is the next occurrence of this character?" There is a row for every
+index in `t`, plus one extra row for "past the end", and a column for every
+character (26 for lowercase letters).
+
+Fill the table from right to left. Each row is the same as the row after it,
+except that the character at the current index now occurs right here. So copy
+the next row and update one cell. The extra row at the end is all `-1`, meaning
+nothing is left.
+
+To check `s`, start at the beginning of `t` and look up where the first
+character of `s` next appears. Then jump to just after that spot and look up
+the next character, and so on. If a lookup ever returns `-1`, that character
+doesn't appear anywhere ahead, so `s` isn't a subsequence.
+
+Complexity:
+
+- Space: `O(26 · m)`
+- Time: `O(26 · m)` to build, then `O(|s|)` per query
+
+This trades memory for speed: every step of a query is a single lookup instead
+of a binary search. It only makes sense for a small alphabet, since the table
+needs a column for every possible character.
